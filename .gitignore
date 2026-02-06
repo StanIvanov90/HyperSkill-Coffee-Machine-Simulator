@@ -1,0 +1,10 @@
+# Java/IntelliJ/Gradle Junk
+.gradle/
+build/
+.idea/
+*.iml
+out/
+
+# Hyperskill specific
+course-remote-info.yaml
+tasks/
