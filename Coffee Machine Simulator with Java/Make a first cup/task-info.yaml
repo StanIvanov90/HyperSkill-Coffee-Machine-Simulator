@@ -5,12 +5,9 @@ files:
     learner_created: false
   - name: test/CoffeeMachineTest.java
     learner_created: false
-  - name: src/machine/MachineEngine.java
-    visible: true
-    learner_created: true
 feedback_link: https://hyperskill.org/projects/33/stages/175/implement#comment
 status: Solved
 feedback:
   message: Congratulations!
   time: "Fri, 06 Feb 2026 14:28:52 UTC"
-record: -1
+record: 1
