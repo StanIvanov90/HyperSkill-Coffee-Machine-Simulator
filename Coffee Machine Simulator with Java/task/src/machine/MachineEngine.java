@@ -7,6 +7,34 @@ public class MachineEngine {
     private final static int MILK_PER_CUP = 50;
     private final static int BEANS_PER_CUP = 15;
 
+    private int water;
+    private int milk;
+    private int beans;
+
+    public MachineEngine(int water, int milk, int beans) {
+        this.water = water;
+        this.milk = milk;
+        this.beans = beans;
+    }
+
+    public void checkCapabilities(int requestedCups) {
+        int possibleByWater = this.water / WATER_PER_CUP;
+        int possibleByMilk = this.milk / MILK_PER_CUP;
+        int possibleByBeans = this.beans / BEANS_PER_CUP;
+
+        int totalPossible = Math.min(possibleByWater,
+                Math.min(possibleByMilk, possibleByBeans));
+
+        if (totalPossible == requestedCups) {
+            System.out.println("Yes, I can make that amount of coffee");
+        } else if (totalPossible > requestedCups) {
+            int extra = totalPossible - requestedCups;
+            System.out.println("Yes, I can make that amount of coffee (and even " + extra + " more than that)");
+        } else {
+            System.out.println("No, I can make only " + totalPossible + " cup(s) of coffee");
+        }
+    }
+
 
     public void printNeededIngredients(int cups) {
         int water = cups * WATER_PER_CUP;
