@@ -5,25 +5,29 @@ import java.util.Scanner;
 public class CoffeeMachine {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        //Get current supplies from the user
-        System.out.println("Write how many ml of water the coffee machine has:");
-        int availableWater = scanner.nextInt();
-
-        System.out.println("Write how many ml of milk the coffee machine has:");
-        int availableMilk = scanner.nextInt();
-
-        System.out.println("Write how many grams of coffee beans the coffee machine has:");
-        int availableBeans = scanner.nextInt();
-
-        MachineEngine engine = new MachineEngine(availableWater, availableMilk, availableBeans);
-
-        //Get the number of cups the user wants
-        System.out.println("Write how many cups of coffee you will need:");
-        int requestedCups = scanner.nextInt();
-
-        engine.checkCapabilities(requestedCups);
-
-
+        MachineEngine machine = new MachineEngine();
+        machine.printMachineStatus();
+        System.out.println("Write action (buy, fill, take):");
+        String action = scanner.nextLine();
+        switch (action) {
+            case "buy" -> {
+                System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:");
+                int coffeeOption = scanner.nextInt();
+                machine.buyCoffee(coffeeOption);
+            }
+            case "take" -> machine.takeMoneyOut();
+            case "fill" -> {
+                System.out.println("Write how many ml of water do you want to add:");
+                int water = scanner.nextInt();
+                System.out.println("Write how many ml of milk do you want to add:");
+                int milk = scanner.nextInt();
+                System.out.println("Write how many grams of coffee beans do you want to add:");
+                int coffeeBeans = scanner.nextInt();
+                System.out.println("Write how many disposable cups of coffee do you want to add:");
+                int cups = scanner.nextInt();
+                machine.fillMachine(water, milk, coffeeBeans, cups);
+            }
+        }
+        machine.printMachineStatus();
     }
 }
