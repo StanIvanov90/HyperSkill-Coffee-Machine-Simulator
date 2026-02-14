@@ -10,6 +10,8 @@ public class MachineEngine {
     private final static int STARTING_MONEY = 550;
     private final static int CUPS_PER_COFFEE = 1;
     private final static int EMPTY_BALANCE = 0;
+    private final static int CLEANING_THRESHOLD = 10;
+    private int cupsMade = 0;
 
     private int water;
     private int milk;
@@ -30,7 +32,7 @@ public class MachineEngine {
     }
 
     public void showMenu() {
-        System.out.println("Write action (buy, fill, take, remaining, exit):");
+        System.out.println("Write action (buy, fill, take, clean, remaining, exit):");
     }
 
     public void takeMoneyOut() {
@@ -71,6 +73,12 @@ public class MachineEngine {
     }
 
     private void processCoffeePurchase(CoffeeType coffeeType) {
+
+        if (this.cupsMade >= CLEANING_THRESHOLD) {
+            System.out.println("I need cleaning!");
+            return; // Stop execution
+        }
+
         String missing = findMissingIngredient(coffeeType.water, coffeeType.milk, coffeeType.beans);
 
         if (!missing.equals("none")) {
@@ -82,7 +90,13 @@ public class MachineEngine {
             this.beans -= coffeeType.beans;
             this.cups -= CUPS_PER_COFFEE;
             this.money += coffeeType.price;
+            this.cupsMade += CUPS_PER_COFFEE;
         }
+    }
+
+    public void cleanMachine() {
+        this.cupsMade = 0;
+        System.out.println("I have been cleaned!");
     }
 
 }

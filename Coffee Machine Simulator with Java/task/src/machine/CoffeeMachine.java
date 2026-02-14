@@ -28,6 +28,7 @@ public class CoffeeMachine {
                     int cups = scanner.nextInt();
                     machine.fillMachine(water, milk, coffeeBeans, cups);
                 }
+                case "clean" -> machine.cleanMachine();
                 case "exit" -> {
                     return;
                 }
