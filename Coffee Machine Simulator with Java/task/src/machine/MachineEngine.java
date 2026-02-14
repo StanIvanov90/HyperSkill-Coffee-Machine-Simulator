@@ -41,6 +41,10 @@ public class MachineEngine {
         this(STARTING_WATER, STARTING_MILK, STARTING_BEANS, STARTING_CUPS, STARTING_MONEY);
     }
 
+    public void showMenu() {
+        System.out.println("Write action (buy, fill, take, remaining, exit):");
+    }
+
     public void takeMoneyOut() {
         System.out.printf("I gave you $%d", this.money);
         this.money = EMPTY_BALANCE;
@@ -70,12 +74,16 @@ public class MachineEngine {
     }
 
 
-    public void buyCoffee(int coffeeOption) {
+    public void buyCoffee(String coffeeOption) {
+        if ("back".equals(coffeeOption)) {
+            return;
+        }
+
         switch (coffeeOption) {
-            case 1 -> buyEspresso();
-            case 2 -> buyLatte();
-            case 3 -> buyCappuccino();
-            default -> throw new IllegalArgumentException("Invalid coffee option: " + coffeeOption);
+            case "1" -> buyEspresso();
+            case "2" -> buyLatte();
+            case "3" -> buyCappuccino();
+            default -> System.out.println("Unknown option");
         }
     }
 

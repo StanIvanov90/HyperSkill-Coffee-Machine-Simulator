@@ -7,12 +7,12 @@ public class CoffeeMachine {
         Scanner scanner = new Scanner(System.in);
         MachineEngine machine = new MachineEngine();
         machine.printMachineStatus();
-        System.out.println("Write action (buy, fill, take, remaining, exit):");
+        machine.showMenu();
         String action = scanner.nextLine();
         switch (action) {
             case "buy" -> {
-                System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:");
-                int coffeeOption = scanner.nextInt();
+                System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:");
+                String coffeeOption = scanner.next();
                 machine.buyCoffee(coffeeOption);
             }
             case "take" -> machine.takeMoneyOut();
