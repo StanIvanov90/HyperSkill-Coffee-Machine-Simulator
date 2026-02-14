@@ -46,12 +46,12 @@ public class MachineEngine {
     }
 
     public void takeMoneyOut() {
-        System.out.printf("I gave you $%d", this.money);
+        System.out.printf("I gave you $%d%n", this.money);
         this.money = EMPTY_BALANCE;
     }
 
     public void printMachineStatus() {
-        System.out.printf("The coffee machine has:%n%d of water%n%d of milk%n%d of coffee beans%n%d disposable cups%n%d of money", this.water, this.milk, this.beans, this.cups, this.money);
+        System.out.printf("The coffee machine has:%n%d of water%n%d of milk%n%d of coffee beans%n%d disposable cups%n%d of money%n", this.water, this.milk, this.beans, this.cups, this.money);
     }
 
     public void fillMachine(int water, int milk, int beans, int cups) {
