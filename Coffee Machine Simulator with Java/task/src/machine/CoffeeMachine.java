@@ -7,7 +7,7 @@ public class CoffeeMachine {
         Scanner scanner = new Scanner(System.in);
         MachineEngine machine = new MachineEngine();
         machine.printMachineStatus();
-        System.out.println("Write action (buy, fill, take):");
+        System.out.println("Write action (buy, fill, take, remaining, exit):");
         String action = scanner.nextLine();
         switch (action) {
             case "buy" -> {
