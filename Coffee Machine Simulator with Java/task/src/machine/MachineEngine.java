@@ -8,18 +8,6 @@ public class MachineEngine {
     private final static int STARTING_BEANS = 120;
     private final static int STARTING_CUPS = 9;
     private final static int STARTING_MONEY = 550;
-    private final static int WATER_PER_ESPRESSO = 250;
-    private final static int MILK_PER_ESPRESSO = 0;
-    private final static int BEANS_PER_ESPRESSO = 16;
-    private final static int PRICE_PER_ESPRESSO = 4;
-    private final static int WATER_PER_LATTE = 350;
-    private final static int MILK_PER_LATTE = 75;
-    private final static int BEANS_PER_LATTE = 20;
-    private final static int PRICE_PER_LATTE = 7;
-    private final static int WATER_PER_CAPPUCCINO = 200;
-    private final static int MILK_PER_CAPPUCCINO = 100;
-    private final static int BEANS_PER_CAPPUCCINO = 12;
-    private final static int PRICE_PER_CAPPUCCINO = 6;
     private final static int CUPS_PER_COFFEE = 1;
     private final static int EMPTY_BALANCE = 0;
 
@@ -61,28 +49,15 @@ public class MachineEngine {
         this.cups += cups;
     }
 
-    public void buyEspresso() {
-        processCoffeePurchase(WATER_PER_ESPRESSO, MILK_PER_ESPRESSO, BEANS_PER_ESPRESSO, PRICE_PER_ESPRESSO);
-    }
-
-    public void buyLatte() {
-        processCoffeePurchase(WATER_PER_LATTE, MILK_PER_LATTE, BEANS_PER_LATTE, PRICE_PER_LATTE);
-    }
-
-    public void buyCappuccino() {
-        processCoffeePurchase(WATER_PER_CAPPUCCINO, MILK_PER_CAPPUCCINO, BEANS_PER_CAPPUCCINO, PRICE_PER_CAPPUCCINO);
-    }
-
-
     public void buyCoffee(String coffeeOption) {
         if ("back".equals(coffeeOption)) {
             return;
         }
 
         switch (coffeeOption) {
-            case "1" -> buyEspresso();
-            case "2" -> buyLatte();
-            case "3" -> buyCappuccino();
+            case "1" -> processCoffeePurchase(CoffeeType.ESPRESSO);
+            case "2" -> processCoffeePurchase(CoffeeType.LATTE);
+            case "3" -> processCoffeePurchase(CoffeeType.CAPPUCCINO);
             default -> System.out.println("Unknown option");
         }
     }
@@ -95,21 +70,20 @@ public class MachineEngine {
         return "none";
     }
 
-    private void processCoffeePurchase(int waterNeeded, int milkNeeded, int beansNeeded, int cost) {
-        String missing = findMissingIngredient(waterNeeded, milkNeeded, beansNeeded);
+    private void processCoffeePurchase(CoffeeType coffeeType) {
+        String missing = findMissingIngredient(coffeeType.water, coffeeType.milk, coffeeType.beans);
 
         if (!missing.equals("none")) {
             System.out.println("Sorry, not enough " + missing + "!");
         } else {
             System.out.println("I have enough resources, making you a coffee!");
-            this.water -= waterNeeded;
-            this.milk -= milkNeeded;
-            this.beans -= beansNeeded;
+            this.water -= coffeeType.water;
+            this.milk -= coffeeType.milk;
+            this.beans -= coffeeType.beans;
             this.cups -= CUPS_PER_COFFEE;
-            this.money += cost;
+            this.money += coffeeType.price;
         }
     }
-
 
 }
 
