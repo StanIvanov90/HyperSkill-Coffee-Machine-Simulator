@@ -1,6 +1,9 @@
 package machine;
 
 public class CoffeeRecipes {
+
+    //Ingredients needed to make different kind of  coffee
+
     public final static int WATER_PER_ESPRESSO = 250;
     public final static int MILK_PER_ESPRESSO = 0;
     public final static int BEANS_PER_ESPRESSO = 16;
